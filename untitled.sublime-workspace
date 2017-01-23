@@ -1,0 +1,472 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"pr",
+				"previousFP"
+			],
+			[
+				"htt",
+				"http_response_code"
+			],
+			[
+				"ms",
+				"msgData"
+			],
+			[
+				"st",
+				"stateNew"
+			],
+			[
+				"to",
+				"totalRows"
+			],
+			[
+				"m",
+				"msgMode"
+			],
+			[
+				"repl",
+				"replyToParts"
+			],
+			[
+				"th",
+				"thisTo"
+			],
+			[
+				"ori",
+				"originalRowPost"
+			],
+			[
+				"mai",
+				"mailData"
+			],
+			[
+				"rep",
+				"replyToParts"
+			],
+			[
+				"re",
+				"replyToParts"
+			],
+			[
+				"da",
+				"previousDataEncoded"
+			],
+			[
+				"msg",
+				"msgID"
+			],
+			[
+				"db",
+				"dbPassword"
+			],
+			[
+				"sq",
+				"sqlImportFile"
+			],
+			[
+				"post",
+				"postToDomain"
+			],
+			[
+				"messa",
+				"messageBody"
+			],
+			[
+				"form",
+				"formEmail"
+			],
+			[
+				"or",
+				"originalRowForm"
+			],
+			[
+				"mes",
+				"messageBodyParts"
+			],
+			[
+				"mess",
+				"messageToDomain"
+			],
+			[
+				"o",
+				"originalRow"
+			],
+			[
+				"row",
+				"rowid"
+			],
+			[
+				"fil",
+				"filenameDated"
+			],
+			[
+				"conf",
+				"configFile"
+			],
+			[
+				"loc",
+				"locations"
+			],
+			[
+				"nam",
+				"nameEQ"
+			],
+			[
+				"sel",
+				"selectedText"
+			],
+			[
+				"mo",
+				"_modeTrackPos"
+			],
+			[
+				"pos",
+				"posLast"
+			],
+			[
+				"speed",
+				"speedTrack"
+			],
+			[
+				"_mo",
+				"_modeTrackPos"
+			],
+			[
+				"_mod",
+				"_modeTrackTime"
+			],
+			[
+				"time",
+				"timedelta"
+			],
+			[
+				"inc",
+				"incomingByte"
+			],
+			[
+				"__canvas",
+				"__canvasData"
+			],
+			[
+				"lo",
+				"logFile"
+			],
+			[
+				"file",
+				"file_exists"
+			],
+			[
+				"ip",
+				"ipFile"
+			],
+			[
+				"sp",
+				"spriteZoom"
+			],
+			[
+				"spr",
+				"spriteW"
+			],
+			[
+				"dro",
+				"dropy"
+			],
+			[
+				"__a",
+				"__activey"
+			],
+			[
+				"el",
+				"eloffset"
+			],
+			[
+				"__mo",
+				"__mousey"
+			],
+			[
+				"__m",
+				"__mousex"
+			],
+			[
+				"__in",
+				"__inwidth"
+			],
+			[
+				"__h",
+				"__inheight"
+			],
+			[
+				"img",
+				"imginfo"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 247.0,
+		"last_filter": ":w",
+		"selected_items":
+		[
+			[
+				":w",
+				":w - Save"
+			],
+			[
+				":",
+				":w - Save"
+			],
+			[
+				":q",
+				"Set Syntax: SQL"
+			],
+			[
+				":W",
+				":w - Save"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/www/_craft_/paparazzi"
+	],
+	"file_history":
+	[
+		"/www/_craft_/raspberrypi/cassopi/src/program.py",
+		"/www/_craft_/raspberrypi/cassopi/test-framebuffer.py",
+		"/www/_craft_/raspberrypi/backups/paparazzi-20170120/notes.txt",
+		"/www/_craft_/mercury/scripts/filters/_posts-010-a-forms.php",
+		"/www/_craft_/mercury/functions/_load.php",
+		"/www/_craft_/mercury/boot/_load.php",
+		"/www/_craft_/mercury/functions/_log-cache.php",
+		"/www/_craft_/mercury/functions/_util-string.php",
+		"/www/_craft_/mercury/forms/_boot.js",
+		"/www/_craft_/mercury/forms/index.php",
+		"/www/_craft_/mercury/notes/_setup.txt",
+		"/www/_craft_/mercury/_cache_/test.log",
+		"/www/_craft_/mercury/boot/_clients.php",
+		"/www/_craft_/mercury/notes/_notes.txt",
+		"/www/_craft_/mercury/notes/_todo.txt",
+		"/www/_craft_/mercury/boot/_config-alif.php",
+		"/www/_craft_/mercury/boot/_config-xi.lan.php",
+		"/www/_craft_/mercury/scripts/_db-state1-forms.php",
+		"/www/_craft_/mercury/scripts/_db-update-state.php",
+		"/www/_craft_/mercury/scripts/_db-debug-row.php",
+		"/www/_craft_/mercury/scripts/_mail-stats.php",
+		"/www/_craft_/mercury/functions/_email-send.php",
+		"/www/_craft_/mercury/scripts/filters/_posts-010-a-posts.php",
+		"/www/_craft_/mercury/scripts/_db-state2-forms.php",
+		"/www/_craft_/mercury/scripts/_db-state2-posts.php",
+		"/www/_craft_/mercury/scripts/filters/_posts-010-b-posts.php",
+		"/www/_craft_/mercury/forms/actions/index.php",
+		"/www/_craft_/mercury/posts/index.php",
+		"/www/_craft_/mercury/scripts/filters/_posts-005-novalidreplyto.php",
+		"/www/_craft_/mercury/scripts/filters/_posts-005-noreplyto.php",
+		"/www/_craft_/mercury/scripts/_db-debug-rows.php",
+		"/www/_craft_/mercury/functions/_db-row.php",
+		"/www/_craft_/mercury/functions/_sql-row.php",
+		"/www/_craft_/mercury/functions/_log-row.php",
+		"/www/_craft_/mercury/functions/_email-parse.php",
+		"/www/_craft_/mercury/scripts/_db-state1-posts.php",
+		"/www/_craft_/mercury/scripts/_db-state0-settokens.php",
+		"/www/_craft_/mercury/functions/_db-state.php",
+		"/www/_craft_/mercury/functions/_db-handle.php",
+		"/www/_craft_/mercury/scripts/_quickImport.sh",
+		"/www/_craft_/mercury/functions/_filters-base.php",
+		"/www/_craft_/mercury/_upload.sh",
+		"/www/_craft_/mercury/scripts/filters/_posts-010-sourceposts.php",
+		"/www/_craft_/mercury/scripts/filters/_posts-010-sourceforms.php",
+		"/www/_craft_/mercury/scripts/_process-forms.sh",
+		"/www/_craft_/mercury/scripts/_process-posts.sh",
+		"/www/_craft_/mercury/scripts/_db-mail-stats.php",
+		"/www/_craft_/mercury/functions/_request-base.php",
+		"/www/_craft_/mercury/scripts/_test.php",
+		"/www/_craft_/mercury/scripts/_db-import.php",
+		"/www/_craft_/mercury/scripts/_db-dump.php",
+		"/www/_craft_/mercury/functions/_response-cache.php",
+		"/www/_craft_/mercury/scripts/filters/_posts-000-newtoken.php",
+		"/www/_craft_/mercury/scripts/_process-all.sh",
+		"/www/_craft_/mercury/functions/_db-result.php",
+		"/www/_craft_/mercury/functions/_config-client.php",
+		"/www/_craft_/mercury/scripts/_process-tokens.sh",
+		"/www/_craft_/mercury/functions/_config-clients.php",
+		"/www/_craft_/mercury/functions/_db-token.php",
+		"/www/_craft_/mercury/scripts/_Mysqldump.php",
+		"/www/_craft_/mercury/_unpack.sh",
+		"/www/_craft_/mercury/notes/setup.txt",
+		"/www/_craft_/mercury/scripts/_run.sh",
+		"/www/_craft_/mercury/backups/scripts/_db-posts-verify.php",
+		"/www/_craft_/mercury/scripts/_db-tokensupdateblanks.php",
+		"/www/_craft_/mercury/_cache_/_db-mercury-xi-latest.sql",
+		"/www/_craft_/mercury/_gitup.sh",
+		"/www/_craft_/mercury/_init.sh",
+		"/www/_craft_/mercury/tests/forms/standard.html",
+		"/www/_craft_/mercury/tests/forms/files.html",
+		"/www/_craft_/mercury/forms/boot.js",
+		"/www/_craft_/mercury/.gitignore",
+		"/www/_craft_/mercury/backups/scripts/_db-dump.php",
+		"/www/_craft_/mercury/backups/_mailgun.sql"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"t1",
+			"locations",
+			"mailgun",
+			"GET",
+			"medi",
+			"z",
+			"screen3done",
+			"moduleParent",
+			"_grandmaster_hithotspotrect",
+			"gerFun"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "untitled.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 355.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
