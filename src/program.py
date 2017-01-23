@@ -145,13 +145,13 @@ while flagRun:
         camera.start_preview( )
         time.sleep( 3 )
         camera.stop_preview( )
-        p.stdin.write("q\n");    
+#        p.stdin.write("q\n");    
         #p.kill() 
         #o.alpha = 0
 
     time.sleep( 0.1 )
 
-
+p.stdin.write("q\n");
 p.stdin.close()
 
 
