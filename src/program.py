@@ -152,3 +152,6 @@ while flagRun:
     time.sleep( 0.1 )
 
 
+p.stdin.close()
+
+
