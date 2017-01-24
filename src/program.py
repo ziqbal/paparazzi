@@ -8,7 +8,7 @@ import time
 import signal
 from random import randint
 
-from subprocess import Popen, PIPE, STDOUT
+from subprocess import call,Popen, PIPE, STDOUT
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -184,7 +184,8 @@ while flagRun:
         camera.hflip = True
         GPIO.output( buttonOutput , GPIO.HIGH )
         frame = frame + 1
-        print(time.time( )-timeStart)
+        #print(time.time( )-timeStart)
+        call(["/usr/bin/mpg123","-q","resources/shutter.mp3"])
         #p.stdin.write("q\n");    
         #p.kill() 
         #o.alpha = 0
