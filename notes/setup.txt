@@ -21,6 +21,12 @@ add #!/bin/bash to client cron.sh script
 . /media/pi/UNTITLEDX/cassopi/scripts/run.sh
 
 
+//// RAM DISK
+#!/bin/bash
+sudo mkdir -p /ram
+sudo mount -t tmpfs -o size=100m tmpfs /ram
+
+
 
 /////
 sudo ./paparazzi/scripts/kill.sh ;sleep 3;tar zxvf paparazzi.tar.gz;sudo ./paparazzi/scripts/run.sh 

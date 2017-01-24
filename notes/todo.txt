@@ -7,10 +7,8 @@ have log file
 
 
 
-camera.start_preview()
-sleep(2)
-camera.capture('/home/pi/selfie.jpg')
-camera.stop_preview()
+no clock!! watch out for timestamp being the same or lower!
+- load data file with counter?
 
 
 

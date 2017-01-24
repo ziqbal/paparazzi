@@ -18,15 +18,30 @@ from pygame.locals import *
 from picamera import PiCamera
 import RPi.GPIO as GPIO
 
-
 print( "BOOT" )
 
 def signal_term_handler( signal , frame ):
     global flagRun
     print "SIGTERM"
-    flagRun=False
+    flagRun = False
  
 signal.signal( signal.SIGTERM , signal_term_handler )
+
+
+runsFile = "runs.dat" 
+runs = 1
+if os.path.isfile( runsFile ):
+    with open( runsFile , "r" ) as f:
+        runs = int( f.read( ).replace( "\n" , "" ) ) + 1
+        f.close( )
+
+with open( runsFile , "w" ) as f:
+    f.write( str( runs ) )
+    f.close( )
+
+print("RUNS = "+str(runs))
+
+
 
 
 
@@ -71,13 +86,13 @@ class paparazzi :
         pygame.font.init( )
         pygame.mouse.set_visible( False )
 
-
-	self.img = pygame.image.load('resources/paparazzi-cover.png')
+        
+        self.img = pygame.image.load('resources/paparazzi-cover.png')
 
         pygame.display.update( )
 
     def __del__( self ):
-        print("QUIT")
+        print( "QUIT" )
         camera.close( )
         pygame.quit( )
 
@@ -93,7 +108,7 @@ class paparazzi :
         y2 = randint( 0 , self.screenrect[ 3 ] )
 
         self.screen.fill( black )
-	self.screen.blit(self.img,(0,0))
+        self.screen.blit( self.img , ( 0 , 0 ) )
 
         #pygame.draw.rect( self.screen , white , self.screenrect , 1 )
         #pygame.draw.line( self.screen , green , ( x1 , y1 ) , ( x2 , y2 ) , 3 )
@@ -101,22 +116,22 @@ class paparazzi :
         pygame.display.update( )
 
 
+buttonInput = 24
+buttonOutput = 23
 
 GPIO.setmode( GPIO.BCM )
 GPIO.setwarnings( False )
-button = 24
-GPIO.setup( button, GPIO.IN , GPIO.PUD_UP )
-GPIO.setup(23, GPIO.OUT)
-GPIO.output(23, GPIO.HIGH)
+GPIO.setup( buttonInput , GPIO.IN , GPIO.PUD_UP )
+GPIO.setup( buttonOutput , GPIO.OUT )
+GPIO.output( buttonOutput , GPIO.HIGH )
 
 
 camera = PiCamera( )
 #camera.rotation = 180
 #camera.resolution = (800,600)
-camera.hflip=True
+camera.hflip = True
 
 paparazzi = paparazzi( )
-
 
 
 #img = Image.open('resources/paparazzi-overlay.png')
@@ -146,28 +161,35 @@ frame=1
 
 print( "LOOP" )
 while flagRun:
-    #print("TICK")
-    paparazzi.test( )
-    #print("TOCK")
 
-    button_state = GPIO.input( button )
-    if button_state == GPIO.LOW:
-        #o.alpha = 128
+    paparazzi.test( )
+
+    buttonInputState = GPIO.input( buttonInput )
+    if buttonInputState == GPIO.LOW:
+        timeStart = time.time( )
         camera.start_preview( )
-        time.sleep( 3 )
-	GPIO.output(23, GPIO.LOW)
-	fn="/media/usb/f-"+str(int(time.time( ) * 1000))+"-"+str(frame)+".jpg"
-	camera.capture(fn)
+        #time.sleep( 3 )
+        GPIO.output( buttonOutput , GPIO.LOW )
+        #fn = "/media/usb/f-" + str( int( time.time( ) * 1000 ) ) + "-" + str( frame ) + ".jpg"
+        #fn = "_cache_/f-" + str( int( time.time( ) * 1000 ) ) + "-" + str( frame ) + ".jpg"
+        #fn = "/ram/f-" + str(runs).zfill(9)+"-"+str( int( time.time( ) * 1000 ) ) + "-" + str( frame ) + ".jpg"
+        fn = "/ram/f-" + str( runs ).zfill( 9 ) + "-" + str( frame ) + "-" + str( int( time.time( ) * 1000 ) ) + ".jpg"
+        #fn = "/ram/f-" + str( int( time.time( ) * 1000 ) ) + "-" + str( frame ) + ".data"
+        #camera.capture('image.data', 'yuv')
+        #camera.capture( fn ,'yuv')
+        time.sleep( 1 )
         camera.stop_preview( )
-	GPIO.output(23, GPIO.HIGH)
-	frame=frame+1
-#        p.stdin.write("q\n");    
+        camera.capture( fn )
+        GPIO.output( buttonOutput , GPIO.HIGH )
+        frame = frame + 1
+        print(time.time( )-timeStart)
+        #p.stdin.write("q\n");    
         #p.kill() 
         #o.alpha = 0
 
     time.sleep( 0.05 )
 
-p.stdin.write("q\n");
-p.stdin.close()
+#p.stdin.write( "q\n" ) ;
+#p.stdin.close( )
 
 
