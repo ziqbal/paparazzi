@@ -33,7 +33,7 @@ signal.signal( signal.SIGTERM , signal_term_handler )
 class paparazzi :
     screen = None 
     screenrect = None 
-    img = None    
+    
     def __init__( self ):
         disp_no = os.getenv( "DISPLAY" )
 
@@ -70,10 +70,6 @@ class paparazzi :
         # Initialise font support
         pygame.font.init( )
         pygame.mouse.set_visible( False )
-
-
-	self.img = pygame.image.load('resources/paparazzi-cover.png')
-
         pygame.display.update( )
 
     def __del__( self ):
@@ -93,10 +89,9 @@ class paparazzi :
         y2 = randint( 0 , self.screenrect[ 3 ] )
 
         self.screen.fill( black )
-	self.screen.blit(self.img,(0,0))
 
-        #pygame.draw.rect( self.screen , white , self.screenrect , 1 )
-        #pygame.draw.line( self.screen , green , ( x1 , y1 ) , ( x2 , y2 ) , 3 )
+        pygame.draw.rect( self.screen , white , self.screenrect , 1 )
+        pygame.draw.line( self.screen , green , ( x1 , y1 ) , ( x2 , y2 ) , 3 )
 
         pygame.display.update( )
 
@@ -106,15 +101,10 @@ GPIO.setmode( GPIO.BCM )
 GPIO.setwarnings( False )
 button = 24
 GPIO.setup( button, GPIO.IN , GPIO.PUD_UP )
-GPIO.setup(23, GPIO.OUT)
-GPIO.output(23, GPIO.HIGH)
 
 
 camera = PiCamera( )
-#camera.rotation = 180
-#camera.resolution = (800,600)
-camera.hflip=True
-
+camera.rotation = 180
 paparazzi = paparazzi( )
 
 
@@ -136,13 +126,12 @@ paparazzi = paparazzi( )
 #path = abspath(join(dirname(__file__), '../subdir1/some_executable'))
 
 #p = Popen(['./raspidmx/pngview','-b 0x0000','-l 3','./resources/paparazzi-overlay.png'], stdout=None, stdin=PIPE, stderr=PIPE,shell=True)
-#p = Popen(['raspidmx/pngview/pngview','-b 0x0000','-l 3','./resources/paparazzi-overlay.png'], stdout=PIPE,stdin=PIPE)
+p = Popen(['raspidmx/pngview/pngview','-b 0x0000','-l 3','./resources/paparazzi-overlay.png'], stdout=PIPE,stdin=PIPE)
 
 
 
 flagRun = True
 
-frame=1
 
 print( "LOOP" )
 while flagRun:
@@ -155,17 +144,12 @@ while flagRun:
         #o.alpha = 128
         camera.start_preview( )
         time.sleep( 3 )
-	GPIO.output(23, GPIO.LOW)
-	fn="/media/usb/f-"+str(int(time.time( ) * 1000))+"-"+str(frame)+".jpg"
-	camera.capture(fn)
         camera.stop_preview( )
-	GPIO.output(23, GPIO.HIGH)
-	frame=frame+1
 #        p.stdin.write("q\n");    
         #p.kill() 
         #o.alpha = 0
 
-    time.sleep( 0.05 )
+    time.sleep( 0.1 )
 
 p.stdin.write("q\n");
 p.stdin.close()
