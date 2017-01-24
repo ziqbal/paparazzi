@@ -179,7 +179,9 @@ while flagRun:
         #camera.capture( fn ,'yuv')
         time.sleep( 1 )
         camera.stop_preview( )
+        camera.hflip =False 
         camera.capture( fn )
+        camera.hflip = True
         GPIO.output( buttonOutput , GPIO.HIGH )
         frame = frame + 1
         print(time.time( )-timeStart)
