@@ -107,8 +107,8 @@ class paparazzi :
         pygame.quit( )
 
     def updateLatest( self ):
-        self.imgLatest = pygame.image.load( "/tmp/latest.jpg" ).convert()
-        self.imgLatest = pygame.transform.scale(self.imgLatest, (60*2,80*2))        
+        self.imgLatest = pygame.image.load( "/tmp/latest.jpg" )
+        self.imgLatest = pygame.transform.scale(self.imgLatest, (60*2,80*2)).convert()        
 
     def test( self ):
 
