@@ -3,6 +3,7 @@ from __future__ import division
 
 import os
 from os.path import abspath, dirname, join
+import shutil
 import sys
 import time
 import signal
@@ -28,6 +29,11 @@ def signal_term_handler( signal , frame ):
 signal.signal( signal.SIGTERM , signal_term_handler )
 
 
+
+if not os.path.isfile( "/tmp/latest.jpg" ):
+    shutil.copyfile( "resources/latest.jpg" , "/tmp/latest.jpg" )
+
+
 runsFile = "runs.dat" 
 runs = 1
 if os.path.isfile( runsFile ):
@@ -46,6 +52,7 @@ class paparazzi :
     screen = None 
     screenrect = None 
     img = None    
+    imgLatest = None    
 
     def __init__( self ):
 
@@ -86,7 +93,10 @@ class paparazzi :
 
         pygame.mouse.set_visible( False )
 
-        self.img = pygame.image.load( "resources/paparazzi-cover.png" )
+        self.img = pygame.image.load( "resources/paparazzi-cover.png" ).convert()
+        self.imgLatest = pygame.image.load( "/tmp/latest.jpg" ).convert()
+
+        self.imgLatest = pygame.transform.scale(self.imgLatest, (60*2,80*2))
 
         pygame.display.update( )
 
@@ -95,6 +105,10 @@ class paparazzi :
         print( "QUIT" )
         camera.close( )
         pygame.quit( )
+
+    def updateLatest( self ):
+        self.imgLatest = pygame.image.load( "/tmp/latest.jpg" ).convert()
+        self.imgLatest = pygame.transform.scale(self.imgLatest, (60*2,80*2))        
 
     def test( self ):
 
@@ -110,6 +124,10 @@ class paparazzi :
 
         self.screen.fill( black )
         self.screen.blit( self.img , ( 0 , 0 ) )
+
+        self.screen.blit( self.imgLatest , ( 100,200 ) )
+
+        pygame.draw.line( self.screen , green , ( x1 , y1 ) , ( x2 , y2 ) , 3 )
 
         pygame.display.update( )
 
@@ -131,9 +149,11 @@ camera.framerate = 30
 
 paparazzi = paparazzi( )
 
-flagRun = True
 
+buttonInputStateLast = False
 frame = 1
+
+flagRun = True
 
 print( "LOOP" )
 
@@ -145,6 +165,10 @@ while flagRun:
 
     if buttonInputState == GPIO.LOW:
 
+        if buttonInputStateLast == True:
+            time.sleep( 0.05 )
+            continue
+
         timeStart = time.time( )
 
         camera.start_preview( )
@@ -155,16 +179,15 @@ while flagRun:
 
         #camera.stop_preview( )
 
-        camera.hflip = False 
-
-        fn = "/tmp/f-" + str( runs ).zfill( 3 ) + "-" + str( frame ).zfill( 6 ) + "-" + str( int( time.time( ) * 1000 ) ) + ".jpg"
-        #camera.capture( fn , format = "jpeg" , use_video_port = True)
-        #camera.capture_continuous([fn], format='jpeg', use_video_port=True)
-        camera.capture_sequence( [ fn ] , use_video_port = True )
-
-        camera.hflip = True
+        #camera.hflip = False 
 
         call( [ "scripts/sfx-shutter.sh" ] )
+
+        fn = "/tmp/f-" + str( runs ).zfill( 3 ) + "-" + str( frame ).zfill( 6 ) + "-" + str( int( time.time( ) * 1000 ) ) + ".jpg"
+        camera.capture_sequence( [ "/tmp/latest.jpg" ] , use_video_port = True )
+        shutil.copyfile( "/tmp/latest.jpg" , fn )
+
+        #camera.hflip = True
 
         GPIO.output( buttonOutput , GPIO.HIGH )
 
@@ -172,7 +195,17 @@ while flagRun:
 
         frame = frame + 1
 
+        buttonInputStateLast = True
+
+        paparazzi.updateLatest( )
+
         print( time.time( ) - timeStart )
+
+    else:
+
+        buttonInputStateLast = False
+
+
 
     time.sleep( 0.05 )
 
