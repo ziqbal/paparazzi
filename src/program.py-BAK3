@@ -39,20 +39,21 @@ with open( runsFile , "w" ) as f:
     f.write( str( runs ) )
     f.close( )
 
-print( "RUN " + str( runs ) )
+print("RUNS = "+str(runs))
+
+
+
+
 
 class paparazzi :
-
     screen = None 
     screenrect = None 
     img = None    
-
     def __init__( self ):
-
         disp_no = os.getenv( "DISPLAY" )
 
         if disp_no:
-            print( "X display = {0}" + format( disp_no ) )
+            print("I'm running under X display = {0}"+format( disp_no ))
         
         drivers = [ "fbcon" , "directfb" , "svgalib" ]
 
@@ -63,41 +64,39 @@ class paparazzi :
                 os.putenv( "SDL_VIDEODRIVER" , driver )
 
             try:
-                #print( driver )
+                print( driver )
                 pygame.display.init( )
-
             except pygame.error:
-                print( "Driver: {0} failed." + format( driver ) )
+                print("Driver: {0} failed."+format( driver ))
                 continue
 
             found = True
             break
     
         if not found:
-            raise Exception( "No video driver found!" )
+            raise Exception( "No suitable video driver found!" )
         
         size = ( pygame.display.Info( ).current_w , pygame.display.Info( ).current_h )
-
-        self.screenrect = ( 0 , 0 , size[ 0 ] , size[ 1 ] ) 
-
-        #print( "resolution : %d x %d" % (size[ 0 ] , size[ 1 ] ) )
-
+        self.screenrect = ( 0 , 0 , size[0], size[1]) 
+        print("Framebuffer size: %d x %d" % (size[ 0 ] , size[ 1 ] ))
+        #self.screen = pygame.display.set_mode( size , pygame.FULLSCREEN )
         self.screen = pygame.display.set_mode( size )
-
+        self.screen.fill( ( 0 , 0 , 0 ) )        
+        # Initialise font support
+        pygame.font.init( )
         pygame.mouse.set_visible( False )
 
-        self.img = pygame.image.load( "resources/paparazzi-cover.png" )
+        
+        self.img = pygame.image.load('resources/paparazzi-cover.png')
 
         pygame.display.update( )
 
     def __del__( self ):
-
         print( "QUIT" )
         camera.close( )
         pygame.quit( )
 
     def test( self ):
-
         black = ( 0 , 0 , 0 )
         white = ( 255 , 255 , 255 )
         red = ( 255 , 0 , 0 )
@@ -110,6 +109,9 @@ class paparazzi :
 
         self.screen.fill( black )
         self.screen.blit( self.img , ( 0 , 0 ) )
+
+        #pygame.draw.rect( self.screen , white , self.screenrect , 1 )
+        #pygame.draw.line( self.screen , green , ( x1 , y1 ) , ( x2 , y2 ) , 3 )
 
         pygame.display.update( )
 
@@ -125,11 +127,33 @@ GPIO.output( buttonOutput , GPIO.HIGH )
 
 
 camera = PiCamera( )
-camera.resolution = (600,800)
+#camera.rotation = 180
+#camera.resolution = (800,600)
 camera.hflip = True
-camera.framerate = 30
 
 paparazzi = paparazzi( )
+
+
+#img = Image.open('resources/paparazzi-overlay.png')
+#pad = Image.new('RGB', (
+#    ((img.size[0] + 31) // 32) * 32,
+#    ((img.size[1] + 15) // 16) * 16,
+#    ))
+#pad.paste(img, (100, 200))
+
+#o = camera.add_overlay(pad.tostring(), size=img.size)
+#o.alpha = 0
+#o.layer = 3
+
+
+#raspidmx/pngview
+
+#path = abspath(join(dirname(__file__), '../subdir1/some_executable'))
+
+#p = Popen(['./raspidmx/pngview','-b 0x0000','-l 3','./resources/paparazzi-overlay.png'], stdout=None, stdin=PIPE, stderr=PIPE,shell=True)
+#p = Popen(['raspidmx/pngview/pngview','-b 0x0000','-l 3','./resources/paparazzi-overlay.png'], stdout=PIPE,stdin=PIPE)
+
+
 
 flagRun = True
 
@@ -142,39 +166,35 @@ while flagRun:
     paparazzi.test( )
 
     buttonInputState = GPIO.input( buttonInput )
-
     if buttonInputState == GPIO.LOW:
-
         timeStart = time.time( )
-
         camera.start_preview( )
-
-        GPIO.output( buttonOutput , GPIO.LOW )
-
         #time.sleep( 3 )
-
-        #camera.stop_preview( )
-
-        camera.hflip = False 
-
+        GPIO.output( buttonOutput , GPIO.LOW )
+        #fn = "/media/usb/f-" + str( int( time.time( ) * 1000 ) ) + "-" + str( frame ) + ".jpg"
+        #fn = "_cache_/f-" + str( int( time.time( ) * 1000 ) ) + "-" + str( frame ) + ".jpg"
+        #fn = "/ram/f-" + str(runs).zfill(9)+"-"+str( int( time.time( ) * 1000 ) ) + "-" + str( frame ) + ".jpg"
+        #fn = "/ram/f-" + str( runs ).zfill( 3 ) + "-" + str( frame ).zfill( 6 ) + "-" + str( int( time.time( ) * 1000 ) ) + ".jpg"
         fn = "/tmp/f-" + str( runs ).zfill( 3 ) + "-" + str( frame ).zfill( 6 ) + "-" + str( int( time.time( ) * 1000 ) ) + ".jpg"
-        #camera.capture( fn , format = "jpeg" , use_video_port = True)
-        #camera.capture_continuous([fn], format='jpeg', use_video_port=True)
-        camera.capture_sequence( [ fn ] , use_video_port = True )
-
-        camera.hflip = True
-
-        call( [ "scripts/sfx-shutter.sh" ] )
-
-        GPIO.output( buttonOutput , GPIO.HIGH )
-
+        #fn = "/ram/f-" + str( int( time.time( ) * 1000 ) ) + "-" + str( frame ) + ".data"
+        #camera.capture('image.data', 'yuv')
+        #camera.capture( fn ,'yuv')
+        time.sleep( 1 )
         camera.stop_preview( )
-
+        camera.hflip =False 
+        camera.capture( fn )
+        camera.hflip = True
+        GPIO.output( buttonOutput , GPIO.HIGH )
         frame = frame + 1
-
-        print( time.time( ) - timeStart )
+        print(time.time( )-timeStart)
+        call( [ "scripts/sfx-shutter.sh" ] )
+        #p.stdin.write("q\n");    
+        #p.kill() 
+        #o.alpha = 0
 
     time.sleep( 0.05 )
 
+#p.stdin.write( "q\n" ) ;
+#p.stdin.close( )
 
 

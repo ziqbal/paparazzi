@@ -6,4 +6,4 @@ APP=${PWD##*/}
 
 ############################################################
 
-scp /tmp/$APP.tar.gz pi@cassopi:$APP.tar.gz 
+scp /tmp/$APP.tar.gz pi@192.168.1.15:$APP.tar.gz 

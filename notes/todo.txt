@@ -6,10 +6,6 @@ have log file
 
 
 
-no clock!! watch out for timestamp being the same or lower!
-- load data file with counter?
-- use 3 digit padding for RUNS and 6 for frame counter
-
 use continues and create GIF ?
 
 

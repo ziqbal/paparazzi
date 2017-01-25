@@ -7,5 +7,9 @@ APP=${PWD##*/}
 ############################################################
 
 cd ..
+
+./paparazzi/scripts/kill.sh 
+sleep 2 
 tar zxvf paparazzi.tar.gz
-rm paparazzi.tar.gz
+sudo ./paparazzi/scripts/run.sh
+
