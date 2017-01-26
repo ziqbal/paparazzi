@@ -90,7 +90,7 @@ class paparazzi :
 
         #print( "resolution : %d x %d" % (size[ 0 ] , size[ 1 ] ) )
 
-        self.screen = pygame.display.set_mode( size ,  pygame.HWSURFACE)
+        self.screen = pygame.display.set_mode( size ,  pygame.HWSURFACE|pygame.DOUBLEBUF |pygame.FULLSCREEN)
 
         pygame.mouse.set_visible( False )
 
@@ -99,7 +99,7 @@ class paparazzi :
 
         self.imgLatest = pygame.transform.scale(self.imgLatest, (60*2,80*2))
 
-        pygame.display.update( )
+        pygame.display.flip( )
 
     def __del__( self ):
 
@@ -125,7 +125,7 @@ class paparazzi :
         label = myfont.render("3", 1, (255,255,0))
         self.screen.blit(label, (100, 100))        
 
-        pygame.display.update( )
+        pygame.display.flip( )
 
     def show2( self ):
         white = ( 255 , 255 , 255 )
@@ -137,7 +137,7 @@ class paparazzi :
         label = myfont.render("2", 1, (255,255,0))
         self.screen.blit(label, (100, 100))       
 
-        pygame.display.update( )
+        pygame.display.flip( )
 
     def show1( self ):
         white = ( 255 , 255 , 255 )
@@ -148,13 +148,13 @@ class paparazzi :
         label = myfont.render("1", 1, (255,255,0))
         self.screen.blit(label, (100, 100))       
 
-        pygame.display.update( )
+        pygame.display.flip( )
 
 
     def clear( self ):
         black = ( 0 , 0 , 0 )
         self.screen.fill( black )
-        pygame.display.update( )        
+        pygame.display.flip( )        
 
 
              
@@ -178,7 +178,8 @@ class paparazzi :
 
         pygame.draw.line( self.screen , green , ( x1 , y1 ) , ( x2 , y2 ) , 3 )
 
-        pygame.display.update( )
+        #pygame.display.update( )
+        pygame.display.flip( )
 
 
 buttonInput = 24
