@@ -72,6 +72,7 @@ class paparazzi :
             try:
                 #print( driver )
                 pygame.display.init( )
+                pygame.font.init()
 
             except pygame.error:
                 print( "Driver: {0} failed." + format( driver ) )
@@ -108,7 +109,55 @@ class paparazzi :
 
     def updateLatest( self ):
         self.imgLatest = pygame.image.load( "/tmp/latest.jpg" )
-        self.imgLatest = pygame.transform.scale(self.imgLatest, (60*2,80*2)).convert()        
+        self.imgLatest = pygame.transform.scale(self.imgLatest, (60*2,80*2)).convert()       
+
+    def show3( self ):
+
+        white = ( 255 , 255 , 255 )
+        black = ( 0 , 0 , 0 )
+
+        self.screen.fill( black )
+
+        #pygame.draw.rect( self.screen , white , ( 100,100,100,200)  )
+
+
+        myfont = pygame.font.SysFont("monospace", 600)
+        label = myfont.render("3", 1, (255,255,0))
+        self.screen.blit(label, (100, 100))        
+
+        pygame.display.update( )
+
+    def show2( self ):
+        white = ( 255 , 255 , 255 )
+        black = ( 0 , 0 , 0 )
+
+        self.screen.fill( black )
+
+        myfont = pygame.font.SysFont("monospace", 600)
+        label = myfont.render("2", 1, (255,255,0))
+        self.screen.blit(label, (100, 100))       
+
+        pygame.display.update( )
+
+    def show1( self ):
+        white = ( 255 , 255 , 255 )
+        black = ( 0 , 0 , 0 )
+        self.screen.fill( black )
+
+        myfont = pygame.font.SysFont("monospace", 600)
+        label = myfont.render("1", 1, (255,255,0))
+        self.screen.blit(label, (100, 100))       
+
+        pygame.display.update( )
+
+
+    def clear( self ):
+        black = ( 0 , 0 , 0 )
+        self.screen.fill( black )
+        pygame.display.update( )        
+
+
+             
 
     def test( self ):
 
@@ -171,23 +220,36 @@ while flagRun:
 
         timeStart = time.time( )
 
-        camera.start_preview( )
+
+#        paparazzi.clear( )
+
+
+        camera.start_preview( alpha = 200 )
+
+        paparazzi.show3( )
+
+        time.sleep( 1 )
+
+        paparazzi.show2( )
+
+        time.sleep( 1 )
+
+        paparazzi.show1( )
+
+        time.sleep( 1 )
 
         GPIO.output( buttonOutput , GPIO.LOW )
+        #camera.start_preview( alpha = 255 )
+        camera.preview.alpha = 255 
+        paparazzi.clear( )
 
-        #time.sleep( 3 )
-
-        #camera.stop_preview( )
-
-        #camera.hflip = False 
+        time.sleep( 1 )
 
         call( [ "scripts/sfx-shutter.sh" ] )
 
         fn = "/tmp/f-" + str( runs ).zfill( 3 ) + "-" + str( frame ).zfill( 6 ) + "-" + str( int( time.time( ) * 1000 ) ) + ".jpg"
         camera.capture_sequence( [ "/tmp/latest.jpg" ] , use_video_port = True )
         shutil.copyfile( "/tmp/latest.jpg" , fn )
-
-        #camera.hflip = True
 
         GPIO.output( buttonOutput , GPIO.HIGH )
 
