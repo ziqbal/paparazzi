@@ -90,7 +90,7 @@ class paparazzi :
 
         #print( "resolution : %d x %d" % (size[ 0 ] , size[ 1 ] ) )
 
-        self.screen = pygame.display.set_mode( size )
+        self.screen = pygame.display.set_mode( size ,  pygame.HWSURFACE)
 
         pygame.mouse.set_visible( False )
 
