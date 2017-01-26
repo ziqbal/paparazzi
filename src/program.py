@@ -222,12 +222,7 @@ while flagRun:
 
         timeStart = time.time( )
 
-
-#        paparazzi.clear( )
-
-
-        #camera.start_preview( alpha = 200 )
-        camera.preview.alpha = 256-32
+        camera.preview.alpha = 192
 
         paparazzi.show3( )
 
