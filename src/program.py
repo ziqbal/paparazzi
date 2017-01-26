@@ -195,6 +195,8 @@ camera = PiCamera( )
 camera.resolution = (600,800)
 camera.hflip = True
 camera.framerate = 30
+camera.preview.alpha = 0
+camera.start_preview( )
 
 paparazzi = paparazzi( )
 
@@ -224,7 +226,7 @@ while flagRun:
 #        paparazzi.clear( )
 
 
-        camera.start_preview( alpha = 200 )
+        #camera.start_preview( alpha = 200 )
 
         paparazzi.show3( )
 
@@ -253,7 +255,7 @@ while flagRun:
 
         GPIO.output( buttonOutput , GPIO.HIGH )
 
-        camera.stop_preview( )
+        #camera.stop_preview( )
 
         frame = frame + 1
 
