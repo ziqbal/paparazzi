@@ -227,6 +227,7 @@ while flagRun:
 
 
         #camera.start_preview( alpha = 200 )
+        camera.preview.alpha = 192
 
         paparazzi.show3( )
 
