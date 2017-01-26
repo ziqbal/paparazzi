@@ -207,6 +207,10 @@ frame = 1
 
 flagRun = True
 
+
+clock = pygame.time.Clock()
+
+
 print( "LOOP" )
 
 while flagRun:
@@ -268,7 +272,7 @@ while flagRun:
 
 
 
-    time.sleep( 0.05 )
+    clock.tick( 30 )
 
 
 
