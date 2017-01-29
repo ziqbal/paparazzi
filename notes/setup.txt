@@ -1,3 +1,169 @@
 
 
+
+
+
+
+enable ssh in raspi-config
+
+network={
+ssid="zzz"
+psk="zzz"
+id_str="zzz"
+}
+
+
+
+I
+https://narcisocerezo.wordpress.com/2014/06/25/create-a-robust-raspberry-pi-setup-for-24x7-operation/
+
+
+
+- SDCARD
+- BOOT CONFIG
+- WPA CONFIG
+- RASP CONFIG (EXPAND FS,HOSTNAME,SSH)
+- UPDATE/UPGRADE
+- sudo apt-get install rpi-update
+- sudo rpi-update
+- sudo apt-get install python-pygame
+- sudo apt-get install python-pil
+
+- setterm -blank 0 ( /etc/rc.local)
+
+
+display_rotate=1 ( 1=90 3=270 degrees)
+
+
+hdmi_force_hotplug=1
+hdmi_group=2
+disable_overscan=1
+hdmi_drive=2
+hdmi_mode=36
+bootcode_delay=3
+I
+
+
+pi / barillari
+
+Edit config.txt
+- uncomment
+- hdmi_group=1
+- hdmi_mode=36
+- hdmi_drive=2
+- hdmi_force_hotplug=1
+
+hdmi_mode=8    800x600    56 Hz
+hdmi_mode=9    800x600    60 Hz
+hdmi_mode=10   800x600    72 Hz
+hdmi_mode=11   800x600    75 Hz
+hdmi_mode=12   800x600    85 Hz
+hdmi_mode=13   800x600   120 Hz
+hdmi_mode=36   1280x1024  75 Hz 
+hdmi_mode=59
+hdmi_mode=57   1680x1050         Reduced blanking
+hdmi_mode=58   1680x1050  60 Hz  
+hdmi_mode=59   1680x1050  75 Hz  
+hdmi_mode=60   1680x1050  85 Hz  
+
+???
+sdram_freq=500
+arm_freq=1350
+over_voltage = 4
+gpu_freq=500
+
+OLD ORIGINAL YODECK
+gpu_mem_1024=128
+hdmi_force_hotplug=1
+gpu_mem_256=64
+initramfs yodeck_initramfs.img 0x01000000
+hdmi_group=2
+disable_overscan=1
+hdmi_drive=2
+gpu_mem_512=128
+hdmi_mode=36
+bootcode_delay=3
+
+
+////
+disable /etc/ssh/sshd_config permitroot etc
+CheckHostIP yes
+
+mkdir .ssh (Make a directory called .ssh The . is very important)
+cd .ssh (change directory – go to the .ssh directory)
+nano authorized_keys (Open/Create a file and call it authorized_keys. Note the z – British spelling will not work in this case.)
+
+making the files/directories for the keys
+You now need to copy and paste the contents of your public key file into this nano window. So open the exported public key file on the machine where you created it and copy it across into the nano window (right-click, paste works from windows). Then,
+CTRL+O (save)
+Enter (confirm file name)
+CTRL+X (Exit)
+
+ls -l (list the contents of the .ssh directory, view permissions and ownership)
+chmod 700 ~/.ssh/ (set permissions for the .ssh directory)
+chmod 600 ~/.ssh/authorized_keys (set permissions for your key file)
+ls -l (check permissions were changed properly)…
+
+
+
+sudo vi /etc/wpa_supplicant/wpa_supplicant.conf
+country=GB
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+ssid="zzzz"
+psk="zz"
+id_str="zzz"
+
+}
+
+I
+in etc/rc.local
+setterm -blank 0
+
+chmod 700 ~/.ssh/ (set permissions for the .ssh directory)
+chmod 600 ~/.ssh/authorized_keys (set permissions for your key file)
+
+export DISPLAY=:0.0
+
+add #!/bin/bash to client cron.sh script
+
+#!/bin/bash
+
+. /media/pi/UNTITLEDX/cassopi/scripts/run.sh
+
+
+//// RAM DISK
+#!/bin/bash
+sudo mkdir -p /ram
+sudo mount -t tmpfs -o size=100m tmpfs /ram
+
+
+//AUDIO
+mpg123
+
+
+/////
+sudo ./paparazzi/scripts/kill.sh ;sleep 3;tar zxvf paparazzi.tar.gz;sudo ./paparazzi/scripts/run.sh 
+
+:w
+
+How To Fix SSH Hanging
+We did determine a work around to get SSH to work though.
+
+Edit the two configuration files for the Raspberry Pi:
+
+/etc/ssh/ssh_config
+/etc/ssh/sshd_config
+
+And add the following line to the bottom of the configuration file:
+
+IPQoS 0x00
+
+And restart sshd (sudo service sshd restart).
+
+
+
+
 http://www.artificialworlds.net/blog/2016/01/16/raspberry-pi-funniest-photo-game/
