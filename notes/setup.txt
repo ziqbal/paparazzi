@@ -4,7 +4,15 @@
 
 
 
+
 enable ssh in raspi-config
+change default password
+resize partition
+update & upgrade
+setterm -blank 0 ( /etc/rc.local)
+
+
+
 
 network={
 ssid="zzz"
@@ -72,17 +80,6 @@ arm_freq=1350
 over_voltage = 4
 gpu_freq=500
 
-OLD ORIGINAL YODECK
-gpu_mem_1024=128
-hdmi_force_hotplug=1
-gpu_mem_256=64
-initramfs yodeck_initramfs.img 0x01000000
-hdmi_group=2
-disable_overscan=1
-hdmi_drive=2
-gpu_mem_512=128
-hdmi_mode=36
-bootcode_delay=3
 
 
 ////
