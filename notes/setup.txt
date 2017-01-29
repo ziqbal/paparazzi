@@ -3,6 +3,7 @@
 
 
 
+KISS!
 
 
 enable ssh in raspi-config
