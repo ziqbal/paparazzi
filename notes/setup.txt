@@ -163,5 +163,6 @@ And restart sshd (sudo service sshd restart).
 
 
 
-
 http://www.artificialworlds.net/blog/2016/01/16/raspberry-pi-funniest-photo-game/
+
+curl -H "Content-Type: application/json" -X POST --data @data.json https://maker.ifttt.com/trigger/EVENT/with/key/KEY
