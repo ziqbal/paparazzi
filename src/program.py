@@ -28,8 +28,6 @@ def signal_term_handler( signal , frame ):
  
 signal.signal( signal.SIGTERM , signal_term_handler )
 
-
-
 if not os.path.isfile( "/tmp/latest.jpg" ):
     shutil.copyfile( "resources/latest.jpg" , "/tmp/latest.jpg" )
 

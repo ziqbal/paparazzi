@@ -166,3 +166,18 @@ And restart sshd (sudo service sshd restart).
 http://www.artificialworlds.net/blog/2016/01/16/raspberry-pi-funniest-photo-game/
 
 curl -H "Content-Type: application/json" -X POST --data @data.json https://maker.ifttt.com/trigger/EVENT/with/key/KEY
+
+
+paparazzi.json
+{
+  "serverpushurl": "http://192.168.1.3/_craft_/paparazzi/src/server/push/",
+  "key": "oohtestpaparazzi",
+  "keyx": {
+    "host": "localhost",
+    "port": 27017
+  }
+}
+
+
+
+

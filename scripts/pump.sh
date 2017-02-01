@@ -7,6 +7,9 @@ APP=${PWD##*/}
 
 ############################################################
 
-flock -xn f.lock -c "python src/program.py" &
+#export DISPLAY=:0.0
+
+#flock -xn f.lock -c "python src/program.py" &
+flock -xn f.lock -c "python src/pump.py" &
 
 cd $CWD
